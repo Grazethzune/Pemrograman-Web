@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-list">
+        <div class="input-add">
+            <input type="text" id="isian" value="">
+            <button onclick="addItem()">Add</button>
+        </div>
+        <div id="container-list-content">
+        </div>
+    </div>
+
+    <script>
+        let todoList = [];
+        let count = 0;
+
+        function addItem() {
+            let contentList = document.getElementById('isian').value;
+            if (contentList) {
+                count++;
+                todoList.push({ id: count, content: contentList });
+                renderList();
+                document.getElementById('isian').value = ''; 
+            }
+        }
+
+        function renderList() {
+            const container = document.getElementById('container-list-content');
+            container.innerHTML = ''; 
+
+            // Render ulang elemen dari todoList array
+            todoList.forEach(item => {
+                container.innerHTML += `
+                    <div class="container-content" id="item-${item.id}">
+                        <div class="content-list">
+                            <p id="text-${item.id}">${item.content}</p>
+                        </div>    
+                        <div class= "btn">
+                            <button onclick="strike('text-${item.id}')">
+                                <img src="images/checkmark.jpg" alt="Hapus">
+                            </button>    
+                            <button onclick="deleteItem(${item.id})">      
+                                <img src="images/deleted-iconjpg.jpg" alt="Hapus">
+                            </button>
+                        </div>    
+                    </div>
+                `;
+            });
+        }
+
+        // Fungsi untuk menghapus item
+        function deleteItem(id) {
+            // Gunakan .filter() untuk membuat daftar baru tanpa item yang dihapus
+            todoList = todoList.filter(item => item.id !== id);
+            renderList(); // Render ulang daftar setelah penghapusan
+        }
+
+        function strike(id){
+            if(document.getElementById(id).style.textDecoration != "line-through"){
+                document.getElementById(id).style.textDecoration = "line-through";
+            }else{
+                document.getElementById(id).style.textDecoration = "none";
+            }
+        }
+    </script>
+</body>
+</html>

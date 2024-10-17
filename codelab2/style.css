@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(194, 189, 189);
+}
+
+.container{
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.pertama{
+    margin: 10px 0;
+}
+
+.pertama input{
+    width: 100%;
+}
+
+.kedua{
+    margin: 10px 0;
+}
+
+.btn{
+    margin: 10px 0;
+}
+
+.btn button{
+    margin: 0 10px;
+    padding: 5px;
+}

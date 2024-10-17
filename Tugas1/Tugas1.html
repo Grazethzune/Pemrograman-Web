@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="kalkulator-container">
+        <div class="display-container">
+            <p id="input"></p>
+            <p id="hasil"></p>
+        </div>
+        <div class="button-container">
+            <div class="left-container">
+                <div class="upper-container">
+                    <button onclick="clearAll()">AC</button>
+                    <button id="pangkat" onclick="tekan_operasi('pangkat')" value="**">^</button>
+                    <button id="modulus" onclick="tekan_operasi('modulus')" value="%">%</button>
+                </div>
+                <div class="angka-kontainer">
+                    <div id="atas">
+                        <button id="sembilan" onclick="tekan_angka('sembilan')" value="9">9</button>
+                        <button id="delapan" onclick="tekan_angka('delapan')" value="8">8</button>
+                        <button id="tujuh" onclick="tekan_angka('tujuh')" value="7">7</button>
+                    </div>
+                    <div id="tengah">
+                        <button id="enam" onclick="tekan_angka('enam')" value="6">6</button>
+                        <button id="lima" onclick="tekan_angka('lima')" value="5">5</button>
+                        <button id="empat" onclick="tekan_angka('empat')" value="4">4</button>
+                    </div>
+                    <div id="bawah">
+                        <button id="tiga" onclick="tekan_angka('tiga')" value="3">3</button>
+                        <button id="dua" onclick="tekan_angka('dua')" value="2">2</button>
+                        <button id="satu" onclick="tekan_angka('satu')" value="1">1</button>
+                    </div>
+                    <button id="nol" onclick="tekan_angka('nol')" value="0">0</button>   
+                </div>
+            </div>
+            <div class="right-container">
+                <button id="bagi" onclick="tekan_operasi('bagi')" value="/">/</button>
+                <button id="kali" onclick="tekan_operasi('kali')" value="*">x</button>
+                <button id="kurang" onclick="tekan_operasi('kurang')" value="-">-</button>
+                <button id="tambah" onclick="tekan_operasi('tambah')" value="+">+</button>
+                <button id="sama_dengan" onclick="hitung()" value="=">=</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let inputString = '';
+
+        function tekan_angka(nomor){
+            let angka = document.getElementById(nomor).value;
+            inputString += angka;
+            document.getElementById("input").textContent = inputString;
+        }
+
+        function tekan_operasi(operasi){
+            let operator = document.getElementById(operasi).value;
+
+            if (inputString.substring(inputString.length -1) == " ") {
+                inputString = inputString.slice(0, -3) + ' ' + operator + ' ';
+            } else {
+                inputString += ' ' + operator + ' ';
+            }
+
+            document.getElementById("input").textContent = inputString;
+        }
+
+        function hitung(){
+            try {
+                let result = String(eval(inputString));
+                inputString = result
+                document.getElementById("input").textContent = result;
+                document.getElementById("hasil").textContent = result;
+            } catch (error) {
+                document.getElementById("hasil").textContent = "Error!";
+            }
+        }
+
+        function clearAll() {
+            inputString = '';
+            document.getElementById("input").textContent = '';
+            document.getElementById("hasil").textContent = '';
+        }
+    </script>
+</body>
+</html>

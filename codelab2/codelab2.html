@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Penjumlahan</h1>
+        <div class="pertama">
+            <p>Bilangan Pertama</p>
+        <input type="number" id="inpt-number-1" value="">
+        </div>
+        <div class="kedua">
+            <p>Bilangan Kedua</p>
+            <input type="number" id="inpt-number-2" value="">
+        </div>
+        <div class="btn">
+            <button onclick="jumlah()">Jumlahkan</button>
+            <button onclick="reset()">Reset</button>
+        </div>
+        <p id="hasil"></p>
+    </div>
+    <script>
+        function jumlah(){
+            let bilangan_pertama = Number(document.getElementById("inpt-number-1").value);
+            let bilangan_kedua = Number(document.getElementById("inpt-number-2").value);
+            const hasil = document.getElementById("hasil");
+            hasil.textContent = "Hasil = " + (bilangan_pertama + bilangan_kedua);
+        }
+
+        function reset(){
+            document.getElementById("inpt-number-1").value = "";
+            document.getElementById("inpt-number-2").value  = "";
+            document.getElementById("hasil").textContent  = "";
+        }
+    </script>
+</body>
+</html>

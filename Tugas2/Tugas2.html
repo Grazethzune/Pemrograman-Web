@@ -44,7 +44,10 @@
                         <div class= "btn">
                             <button onclick="strike('text-${item.id}')">
                                 <img src="images/checkmark.jpg" alt="Hapus">
-                            </button>    
+                            </button> 
+                            <button onclick="editItem(${item.id})">
+                                edit
+                            </button>
                             <button onclick="deleteItem(${item.id})">      
                                 <img src="images/deleted-iconjpg.jpg" alt="Hapus">
                             </button>
@@ -54,7 +57,19 @@
             });
         }
 
-        // Fungsi untuk menghapus item
+        function editItem(id) {
+            let newContent = prompt("Edit list item:", document.getElementById(`text-${id}`).innerText);
+
+            if (newContent) {
+                document.getElementById(`text-${id}`).innerText = newContent;
+                const itemIndex = todoList.findIndex(item => item.id === id);
+                if (itemIndex != -1) {
+                todoList[itemIndex].content = newContent;
+                }
+            }
+        }
+
+
         function deleteItem(id) {
             // Gunakan .filter() untuk membuat daftar baru tanpa item yang dihapus
             todoList = todoList.filter(item => item.id !== id);
